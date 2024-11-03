@@ -11,7 +11,7 @@ class Display :
   def __init__(self, display_config):
     self.config = display_config
     self.config["address"] = int(display_config.get("address", 0x27), 16)
-    self.lcdText: List[str] = ["LCD Initialized..."]
+    self.lcdText: List[str] = ["LCD Initialized...", "", "", ""]
         
     self.lcd = CharLCD(**self.config)
 
@@ -21,7 +21,7 @@ class Display :
 
   def update_line(self, line: int) :
     self.clear_line(line)
-    self.write_line(self.lcdText[line])
+    self.write_line(line,self.lcdText[line])
 
   def update_display(self):
     for i in range(self.config.get("rows")) :

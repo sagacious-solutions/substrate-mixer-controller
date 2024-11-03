@@ -1,5 +1,5 @@
 import time
-from multiprocessing import Process
+from threading import Thread
 from typing import Dict
 import RPi.GPIO as GPIO
 
@@ -22,9 +22,16 @@ class MotorControl :
     self.pwm.ChangeDutyCycle(0)
 
   def run_set_time(self, run_time = 0) :
+    run_time = run_time if run_time else self.motor_runtime
+    print(f"Running motor for {run_time} seconds.")
     self.run_motor(self.speed)
-    time.sleep(self.motor_runtime)
+    time.sleep(run_time)
     self.stop_motor()
+
+  # Runs motor for set run time of class without blocking execution thread.
+  def run_in_background(self) :
+    motor_thread = Thread(target=self.run_set_time)
+    motor_thread.start()
 
   def cleanup_gpio(self) :
     GPIO.cleanup(self.pin)
