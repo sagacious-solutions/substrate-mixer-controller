@@ -1,9 +1,10 @@
 from multiprocessing import Process
 import modules.Display as Display
 import json
+import time
+
 
 CONFIG_PATH = "config.json"
-
 
 def load_config(path):
   print(f'config loaded from {path}.')

@@ -3,6 +3,7 @@
 ## Docs : https://rplcd.readthedocs.io/en/stable/getting_started.html#initializing-the-lcd
 ########################################################################################
 from multiprocessing import Process
+from typing import List
 from RPLCD.i2c import CharLCD
 
 
@@ -10,17 +11,17 @@ class Display :
   def __init__(self, display_config):
     self.config = display_config
     self.config["address"] = int(display_config.get("address", 0x27), 16)
-    self.lcdText = [
-      "LCD Initialized...",
-      "Line sdfklg",
-      "Some potato Text",
-      "Do Different stuff!!!"      
-      ]
+    self.lcdText: List[str] = ["LCD Initialized..."]
         
     self.lcd = CharLCD(**self.config)
 
     self.update_display()
     print("LCD Initlialization Complete.")
+
+
+  def update_line(self, line: int) :
+    self.clear_line(line)
+    self.write_line(self.lcdText[line])
 
   def update_display(self):
     for i in range(self.config.get("rows")) :
