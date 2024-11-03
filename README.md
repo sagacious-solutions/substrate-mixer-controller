@@ -5,6 +5,16 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
+# Hardware Functionality
+
+### LCD
+
+LCD is a 4x20 Char display with a PCF8574 i2c GPIO backpack
+
+### Motor Control
+
+Motors controlled with PWM via a D4184 Mosfet.
+
 ### Coding and Running
 ```
 source .venv/bin/activate
