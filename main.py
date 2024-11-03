@@ -1,15 +1,8 @@
 from multiprocessing import Process
 import modules.Display as Display
+import modules.Motor as Motor
 import json
 import time
-import RPi.GPIO as GPIO
-
-# Proto Type Code
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(18, GPIO.OUT) 
-pwm = GPIO.PWM(18, 100)
-pwm.start(100)  # Start with 0% duty cycle (LED off
-
 
 CONFIG_PATH = "config.json"
 
