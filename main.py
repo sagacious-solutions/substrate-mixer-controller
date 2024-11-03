@@ -16,14 +16,20 @@ def load_config(path):
 def main():
   config = load_config(CONFIG_PATH)
   display = Display.Display(config["display"])
+  motor = Motor.MotorControl(config["motor"])
+  motor.speed = 50
+  motor.run_set_time()
+
+  try :
+    while True :
+      time.sleep(5)
+  finally :
+    motor.cleanup_gpio()
+    
   
 
 if __name__ == "__main__" :
   main()
-  try :
-    while True :
-      time.sleep(1000)
-  finally :
-    GPIO.cleanup(18)
+
 
 

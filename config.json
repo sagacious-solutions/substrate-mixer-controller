@@ -1,7 +1,8 @@
 {
   "motor" :{
     "pwm_pin" : 18,
-    "start_speed" : 0
+    "start_speed" : 0,
+    "default_run_time" : 5
   },
   "display" : {
     "i2c_expander": "PCF8574", "address":"0x27", "port":1,
